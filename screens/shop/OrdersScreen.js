@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Platform, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Platform, ActivityIndicator, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -28,6 +28,15 @@ const OrdersScreen = props => {
             </View>
         );
     }
+
+    if (orders.length === 0) {
+        return (
+            <View style={styles.noOrdersContainer}>
+                <Text>No orders found, maybe start ordering some products?</Text>
+            </View>
+        );
+    }
+
 
     return (
         <FlatList
@@ -64,6 +73,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    noOrdersContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
